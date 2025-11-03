@@ -19,6 +19,7 @@ void display_trip(list<Goat> trip);
 void search_name(list<Goat> trip);
 void search_age(list<Goat> trip);
 void search_color(list<Goat> trip);
+void average_age(list<Goat> trip);
 int main_menu();
 
 int main() {
@@ -79,6 +80,10 @@ int main() {
                 cout << "Searching for goats by color. \n";
                 search_color(trip);
                 break;
+            case 7:
+                cout << "Calculating average age of goats. \n";
+                average_age(trip);
+                break;
 
             default:
                 cout << "Invalid selection.\n";
@@ -102,7 +107,7 @@ int main_menu() {
     cout << "[4] Search for goats by name\n";
     cout << "[5] Search for goats by age\n";
     cout << "[6] Search for goats by color\n";
-    cout << "[7] \n";
+    cout << "[7] Calculate average age of goats\n";
     cout << "[8] \n";
     cout << "[9] \n";
     cout << "[10] \n";
@@ -261,4 +266,17 @@ for_each(trip.begin(), trip.end(), [color](Goat g){
 //Displaying search complete message:
 cout << "Search complete. \n";
 
+}
+
+
+//average_age() calculates the average age by accumulating the ages of the goats then dividing by the number of goats.
+//Requires: a list of Goats
+//Returns: nothing
+void average_age(list<Goat> trip){
+    int totalAge = 0;
+    
+    //Accumulating the ages of all the goats:
+    
+
+    cout << "Average age: " << totalAge / trip.size() << endl;
 }
