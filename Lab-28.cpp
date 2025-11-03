@@ -182,7 +182,7 @@ void search_name(list<Goat> trip){
 string nm;
 //Getting the name to search for:
 cout << "Enter the name of the goats to search for: ";
-cin.clear();
+cin.clear();//clearing input buffer
 cin.ignore(10000, '\n');
 
 getline(cin, nm);
