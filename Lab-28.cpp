@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <list>
 #include <algorithm>
+#include <numeric>
 #include "Goat.h"
 
 using namespace std;
@@ -273,10 +274,12 @@ cout << "Search complete. \n";
 //Requires: a list of Goats
 //Returns: nothing
 void average_age(list<Goat> trip){
-    int totalAge = 0;
+    double totalAge = 0;
     
     //Accumulating the ages of all the goats:
-    
+    totalAge = accumulate(trip.begin(), trip.end(), 0, [](int sum, Goat g){
+        return sum + g.get_age();
+    });
 
     cout << "Average age: " << totalAge / trip.size() << endl;
 }
