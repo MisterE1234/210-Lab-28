@@ -169,20 +169,29 @@ int select_goat(list<Goat> trp) {
 void search_name(list<Goat> trip){
 auto it = trip.begin();
 string nm;
-
+//Getting the name to search for:
 cout << "Enter the name of the goats to search for: ";
 cin.clear();
 cin.ignore(10000, '\n');
 
 getline(cin, nm);
 
-for_each(it, trip.end(), [nm](Goat g){
+//Searching through the list and displaying any matches:
+for_each(trip.begin(), trip.end(), [nm](Goat g){
     if(g.get_name() == nm){
         cout << g.get_name() << " (" << g.get_age() << ", " << g.get_color() << ")\n";
+        
+    }
+
+    else{
+        cout << " no matches found. \n";
     }
 });
 
-if (it == trip.begin()){
-    cout << "No goats found by that name.\n";
-}
+
+
+
+
+
+
 }
