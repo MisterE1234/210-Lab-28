@@ -25,6 +25,7 @@ void average_age(list<Goat> trip);
 void sort_goats(list<Goat> & trip);
 void simulate(list<Goat> trip);
 void rename_goat(list<Goat>& trip);
+void swap_goat(list<Goat>& trip, string [], string []);
 int main_menu();
 
 int main() {
@@ -101,6 +102,10 @@ int main() {
                 cout << "Renaming goat. \n";
                 rename_goat(trip);
                 break;
+            case 11:
+                cout << "Swapping goat. \n";
+                swap_goat(trip, names, colors);
+                break;
 
             default:
                 cout << "Invalid selection.\n";
@@ -128,7 +133,7 @@ int main_menu() {
     cout << "[8] Sort goats by age\n";
     cout << "[9] Simulate n years\n";
     cout << "[10] Rename goat of choice \n";
-    cout << "[11] \n";
+    cout << "[11] Swap out goat with new goat\n";
     cout << "[12] Quit\n";
     cout << "Choice --> ";
     
@@ -433,5 +438,50 @@ void rename_goat(list<Goat>& trip){
              << it->get_name() 
              << " (" << it->get_age() 
              << ", " << it->get_color() << ")\n";
+
+}
+
+//swap_goat() swaps a goat of the users choice with a new goat
+//requires: a list of goats by reference and two string arrays
+//returns: nothing
+void swap_goat(list<Goat>& trip, string nms [], string cls []){
+    int choice;
+    bool valid = false;
+
+    //Displaying the list of goats:
+    display_trip(trip);
+
+    while(!valid){
+        cout << "Which goat do you choose? (integer: 1-" << trip.size() << "): ";
+        cin >> choice;
+
+        //Input validation:
+    if(cin.fail()){ // If input is not an integer:
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "Invalid input, not an integer. Try again:\n";
+    }
+    else if(choice < 1 || choice > trip.size()){ //If input is out of range:
+        cout << "Invalid input, out of range. Try again:\n";
+    }
+    else{ //If input is valid:
+        valid = true;
+    }
+    }
+    
+    //New Goat:
+    cout << "New goat:\n";
+    int age = rand() % MAX_AGE;
+    string nm = nms[rand() % SZ_NAMES];
+    string cl = cls[rand() % SZ_COLORS];
+    Goat tmp(nm, age, cl);
+    
+
+    //locating goat with iterators an the previous choice:
+    auto it = trip.begin();
+    advance(it, choice - 1);
+    replace(trip.begin(), trip.end(), it, tmp);
+
+
 
 }
