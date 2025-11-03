@@ -370,16 +370,12 @@ while(!valid){
     //Simulating the years:
 
     for (int i = 0; i < years; i++) {
-        for_each(trip.begin(), trip.end(), [](Goat g){
+        for_each(trip.begin(), trip.end(), [](Goat& g){
+            g.set_age(g.get_age() + 1);
             if(g.get_age() > MAX_AGE){
                 g.set_name("Dead " + g.get_name());
             }
-
         });
-
-        for_each(trip.begin(), trip.end(), [](Goat g){
-            g.set_age(g.get_age() + 1);
-        });    
     }
 
     cout << "Goats in " << years << " years: \n";
