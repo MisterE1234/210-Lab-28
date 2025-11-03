@@ -15,7 +15,7 @@ int select_goat(list<Goat> trip);
 void delete_goat(list<Goat> &trip);
 void add_goat(list<Goat> &trip, string [], string []);
 void display_trip(list<Goat> trip);
-void search_goat(list<Goat> trip);
+void search_name(list<Goat> trip);
 int main_menu();
 
 int main() {
@@ -64,8 +64,8 @@ int main() {
                 display_trip(trip);
                 break;
             case 4:
-                cout << "Searching for a goat.\n";
-                search_goat(trip);
+                cout << "Searching for goats by name.\n";
+                search_name(trip);
                 break;
 
             default:
@@ -87,7 +87,7 @@ int main_menu() {
     cout << "[1] Add a goat\n";
     cout << "[2] Delete a goat\n";
     cout << "[3] List goats\n";
-    cout << "[4] Search for goat\n";
+    cout << "[4] Search for goats by name\n";
     cout << "[5] \n";
     cout << "[6] \n";
     cout << "[7] \n";
@@ -163,22 +163,26 @@ int select_goat(list<Goat> trp) {
     return input;
 }
 
-//search_goat() finds all goats that have a user specified name and displays their data if found.
+//search_name() finds all goats that have a user specified name and displays their data if found.
 //requires: a list of Goats
 //returns: nothing
-void search_goat(list<Goat> trip){
+void search_name(list<Goat> trip){
 auto it = trip.begin();
 string nm;
 
-cout << "Enter the name of the goat to search for: ";
+cout << "Enter the name of the goats to search for: ";
 cin.clear();
 cin.ignore(10000, '\n');
 
 getline(cin, nm);
-it = find(trip.begin(), trip.end(), Goat(nm));
-if (it != trip.end()){
-    cout << "Goat found: " << nm << " (" << it->get_age() << ", " << it->get_color() << ")\n";
 
+for_each(it, trip.end(), [nm](Goat g){
+    if(g.get_name() == nm){
+        cout << g.get_name() << " (" << g.get_age() << ", " << g.get_color() << ")\n";
+    }
+});
+
+if (it == trip.begin()){
+    cout << "No goats found by that name.\n";
 }
-
 }
