@@ -16,6 +16,7 @@ void delete_goat(list<Goat> &trip);
 void add_goat(list<Goat> &trip, string [], string []);
 void display_trip(list<Goat> trip);
 void search_name(list<Goat> trip);
+void search_age(list<Goat> trip);
 int main_menu();
 
 int main() {
@@ -68,6 +69,11 @@ int main() {
                 search_name(trip);
                 break;
 
+            case 5:
+                cout << "Searching for goats by age. \n";
+                search_age(trip);
+                break;
+
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -88,7 +94,7 @@ int main_menu() {
     cout << "[2] Delete a goat\n";
     cout << "[3] List goats\n";
     cout << "[4] Search for goats by name\n";
-    cout << "[5] \n";
+    cout << "[5] Search for goats by age\n";
     cout << "[6] \n";
     cout << "[7] \n";
     cout << "[8] \n";
@@ -186,5 +192,43 @@ for_each(trip.begin(), trip.end(), [nm](Goat g){
 //Displaying search complete message:
 cout << "Search complete. \n";
 
+}
+
+//search_age() finds all goats that have a user specified name and displays their data if found.
+//requires: a list of Goats
+//returns: nothing
+void search_age(list<Goat> trip){
+auto it = trip.begin();
+int age;
+bool valid = false;
+//Getting the name to search for:
+while(!valid){
+    cout << "Enter the age of the goats to search for (integer: 0-20): ";
+    cin >> age;
+
+    if(cin.fail()){
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "Invalid input, not an integer. Try again:\n";
+    }
+    else if(age > 20 || age < 0){
+        cout << "Invalid age, out of range. try again:\n";
+    }
+    else{
+        valid = true;
+    }
+
+
+}
+
+//Searching through the list and displaying any matches:
+for_each(trip.begin(), trip.end(), [age](Goat g){
+    if(g.get_age() == age){
+        cout << g.get_name() << " (" << g.get_age() << ", " << g.get_color() << ")\n";
+        
+    }
+});
+//Displaying search complete message:
+cout << "Search complete. \n";
 
 }
