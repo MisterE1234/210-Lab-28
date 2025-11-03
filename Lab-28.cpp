@@ -22,6 +22,7 @@ void search_age(list<Goat> trip);
 void search_color(list<Goat> trip);
 void average_age(list<Goat> trip);
 void sort_goats(list<Goat> & trip);
+void simulate(list<Goat> trip);
 int main_menu();
 
 int main() {
@@ -90,6 +91,10 @@ int main() {
                 cout << "Sorting goats by age. \n";
                 sort_goats(trip);
                 break;
+            case 9:
+                cout << "Simulating n years. \n";
+                simulate(trip);
+                break;
 
             default:
                 cout << "Invalid selection.\n";
@@ -115,7 +120,7 @@ int main_menu() {
     cout << "[6] Search for goats by color\n";
     cout << "[7] Calculate average age of goats\n";
     cout << "[8] Sort goats by age\n";
-    cout << "[9] \n";
+    cout << "[9] Simulate n years\n";
     cout << "[10] \n";
     cout << "[11] \n";
     cout << "[12] Quit\n";
@@ -331,4 +336,42 @@ void sort_goats(list<Goat>& trip){
         });
     }
 
+}
+
+//simulate() will show the user the ages of all surviving goats after a user specified number.
+//requires: a list of Goats
+//returns: nothing
+void simulate(list<Goat> trip){
+int years;
+bool valid = false;
+
+
+//Getting user input with validation:
+while(!valid){
+    cout << "How many years to simulate (1+): ";
+    cin >> years;
+
+    //Input validation:
+    if(cin.fail()){ // If input is not an integer:
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "Invalid input, not an integer. Try again:\n";
+    }
+    else if(years < 1){ //If input is out of range:
+        cout << "Invalid input, out of range. Try again:\n";
+    }
+    else{ //If input is valid:
+        cout << "Simulating ...\n";
+        valid = true;
+    }
+
+    }
+
+    //Simulating the years:
+
+    for (int i = 0; i < years; i++) {
+        trip.erase(remove(trip.begin(), trip.end(), Goat ("", MAX_AGE)));
+
+        for_each({});    
+    }
 }
