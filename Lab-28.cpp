@@ -7,6 +7,7 @@
 #include <list>
 #include <algorithm>
 #include "Goat.h"
+
 using namespace std;
 
 const int SZ_NAMES = 200, SZ_COLORS = 25;
@@ -244,7 +245,7 @@ cout << "Search complete. \n";
 void search_color(list<Goat> trip){
 string color;
 //Getting the color to search for:
-cout << "Enter the color of the goats to search for: ";
+cout << "Enter the color of the goats to search for(ex. Blue, Magenta): ";
 cin.clear(); //clearing input buffer
 cin.ignore(10000, '\n');
 
