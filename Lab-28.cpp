@@ -126,7 +126,7 @@ int main_menu() {
     cout << "[7] Calculate average age of goats\n";
     cout << "[8] Sort goats by age\n";
     cout << "[9] Simulate n years\n";
-    cout << "[10] rename goat of choice \n";
+    cout << "[10] Rename goat of choice \n";
     cout << "[11] \n";
     cout << "[12] Quit\n";
     cout << "Choice --> ";
@@ -386,4 +386,48 @@ while(!valid){
 
     cout << "Goats in " << years << " years: \n";
     display_trip(trip);
+}
+
+//rename_goat() will list the goats then ask the user to choose which goat and what name.
+//requires: a list of goats by reference
+//returns: nothing
+void rename_goat(list<Goat>& trip){
+    string tempName;
+    int choice;
+    bool valid = false;
+
+    //Displaying the list of goats:
+    display_trip(trip);
+
+    while(!valid){
+        cout << "Which goat do you choose? (integer: 1-" << trip.size() << "): ";
+        cin >> choice;
+
+        //Input validation:
+    if(cin.fail()){ // If input is not an integer:
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "Invalid input, not an integer. Try again:\n";
+    }
+    else if(choice < 1 || choice > trip.size()){ //If input is out of range:
+        cout << "Invalid input, out of range. Try again:\n";
+    }
+    else{ //If input is valid:
+        valid = true;
+    }
+    }
+    
+    cout << "What is the new name? ";
+    cin.clear();
+    cin.ignore(10000, '\n');
+    getline(cin, tempName);
+
+    auto it = trip.begin();
+    advance(it, choice - 1);
+    trip[choice -1].get_name
+
+
+
+
+
 }
