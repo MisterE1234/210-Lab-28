@@ -14,6 +14,7 @@ int select_goat(list<Goat> trip);
 void delete_goat(list<Goat> &trip);
 void add_goat(list<Goat> &trip, string [], string []);
 void display_trip(list<Goat> trip);
+void search_goat(list<Goat> trip);
 int main_menu();
 
 int main() {
@@ -47,7 +48,7 @@ int main() {
     
     // Goat Manager 3001 Engine
     int sel = main_menu();
-    while (sel != 4) {
+    while (sel != 12) {
         switch (sel) {
             case 1:
                 cout << "Adding a goat.\n";
@@ -61,6 +62,9 @@ int main() {
                 cout << "Displaying goat data.\n";
                 display_trip(trip);
                 break;
+            case 4:
+                cout << "Searching for a goat.\n";
+
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -73,18 +77,44 @@ int main() {
 }
 
 int main_menu() {
+    int choice;
+    bool valid = false;
+
     cout << "*** GOAT MANAGER 3001 ***\n";
     cout << "[1] Add a goat\n";
     cout << "[2] Delete a goat\n";
     cout << "[3] List goats\n";
-    cout << "[4] Quit\n";
+    cout << "[4] Search for goat\n";
+    cout << "[5] \n";
+    cout << "[6] \n";
+    cout << "[7] \n";
+    cout << "[8] \n";
+    cout << "[9] \n";
+    cout << "[10] \n";
+    cout << "[11] \n";
+    cout << "[12] Quit\n";
     cout << "Choice --> ";
-    int choice;
-    cin >> choice;
-    while (choice < 1 || choice > 4) {
-        cout << "Invalid, again --> ";
+    
+    while(!valid) {
         cin >> choice;
+
+        if(cin.fail()){
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Invalid input, not an integer.\n";
+        }
+        else{
+
+            if(choice < 1 || choice > 12){
+                cout << "Invalid number, try again. \n";        
+            }
+
+            else{
+                valid = true;
+            }
+        }
     }
+
     return choice;
 }
 
