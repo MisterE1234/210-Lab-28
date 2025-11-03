@@ -173,7 +173,6 @@ int select_goat(list<Goat> trp) {
 //requires: a list of Goats
 //returns: nothing
 void search_name(list<Goat> trip){
-auto it = trip.begin();
 string nm;
 //Getting the name to search for:
 cout << "Enter the name of the goats to search for: ";
@@ -198,26 +197,27 @@ cout << "Search complete. \n";
 //requires: a list of Goats
 //returns: nothing
 void search_age(list<Goat> trip){
-auto it = trip.begin();
 int age;
-bool valid = false;
-//Getting the name to search for:
+bool valid = false; // a bool to check for valid input
+
+//Getting the age to search for by using a while loop to validate:
 while(!valid){
     cout << "Enter the age of the goats to search for (integer: 0-20): ";
     cin >> age;
 
-    if(cin.fail()){
+    //Input validation:
+    if(cin.fail()){ // If input is not an integer:
         cin.clear();
         cin.ignore(10000, '\n');
         cout << "Invalid input, not an integer. Try again:\n";
     }
-    else if(age > 20 || age < 0){
+    else if(age > 20 || age < 0){ //If input is out of range:
         cout << "Invalid age, out of range. try again:\n";
     }
-    else{
+    else{ //If input is valid:
+        cout << "Searching ...\n";
         valid = true;
     }
-
 
 }
 
