@@ -7,6 +7,7 @@
 #include <list>
 #include <algorithm>
 #include <numeric>
+#include <random>
 #include "Goat.h"
 
 using namespace std;
@@ -23,6 +24,7 @@ void search_color(list<Goat> trip);
 void average_age(list<Goat> trip);
 void sort_goats(list<Goat> & trip);
 void simulate(list<Goat> trip);
+void rename_goat(list<Goat>& trip);
 int main_menu();
 
 int main() {
@@ -95,6 +97,9 @@ int main() {
                 cout << "Simulating n years. \n";
                 simulate(trip);
                 break;
+            case 10:
+                cout << "Renaming goat. \n";
+                
 
             default:
                 cout << "Invalid selection.\n";
@@ -121,7 +126,7 @@ int main_menu() {
     cout << "[7] Calculate average age of goats\n";
     cout << "[8] Sort goats by age\n";
     cout << "[9] Simulate n years\n";
-    cout << "[10] \n";
+    cout << "[10] rename goat of choice \n";
     cout << "[11] \n";
     cout << "[12] Quit\n";
     cout << "Choice --> ";
