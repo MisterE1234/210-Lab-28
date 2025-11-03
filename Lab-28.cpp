@@ -99,7 +99,8 @@ int main() {
                 break;
             case 10:
                 cout << "Renaming goat. \n";
-                
+                rename_goat(trip);
+                break;
 
             default:
                 cout << "Invalid selection.\n";
@@ -417,17 +418,20 @@ void rename_goat(list<Goat>& trip){
     }
     }
     
+    //Asking for the new name:
     cout << "What is the new name? ";
     cin.clear();
     cin.ignore(10000, '\n');
     getline(cin, tempName);
 
+    //locating goat with iterators an the previous choice:
     auto it = trip.begin();
     advance(it, choice - 1);
-    trip[choice -1].get_name
-
-
-
-
+    //Changing the name and then displaying the data of the goat:
+    it->set_name(tempName);
+    cout << "\t"
+             << it->get_name() 
+             << " (" << it->get_age() 
+             << ", " << it->get_color() << ")\n";
 
 }
