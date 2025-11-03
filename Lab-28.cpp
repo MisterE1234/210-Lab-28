@@ -7,7 +7,7 @@
 #include <list>
 #include <algorithm>
 #include <numeric>
-#include <random>
+#include <string>
 #include "Goat.h"
 
 using namespace std;
@@ -474,13 +474,15 @@ void swap_goat(list<Goat>& trip, string nms [], string cls []){
     int age = rand() % MAX_AGE;
     string nm = nms[rand() % SZ_NAMES];
     string cl = cls[rand() % SZ_COLORS];
+
+    cout << nm << " (" << age << ", " << cl << ") \n";
     Goat tmp(nm, age, cl);
     
 
     //locating goat with iterators an the previous choice:
     auto it = trip.begin();
     advance(it, choice - 1);
-    replace(trip.begin(), trip.end(), it, tmp);
+    replace(trip.begin(), trip.end(), *it, tmp);
 
 
 
