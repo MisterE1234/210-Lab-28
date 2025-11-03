@@ -17,6 +17,7 @@ void add_goat(list<Goat> &trip, string [], string []);
 void display_trip(list<Goat> trip);
 void search_name(list<Goat> trip);
 void search_age(list<Goat> trip);
+void search_color(list<Goat> trip);
 int main_menu();
 
 int main() {
@@ -73,6 +74,10 @@ int main() {
                 cout << "Searching for goats by age. \n";
                 search_age(trip);
                 break;
+            case 6:
+                cout << "Searching for goats by color. \n";
+                search_color(trip);
+                break;
 
             default:
                 cout << "Invalid selection.\n";
@@ -95,7 +100,7 @@ int main_menu() {
     cout << "[3] List goats\n";
     cout << "[4] Search for goats by name\n";
     cout << "[5] Search for goats by age\n";
-    cout << "[6] \n";
+    cout << "[6] Search for goats by color\n";
     cout << "[7] \n";
     cout << "[8] \n";
     cout << "[9] \n";
@@ -193,7 +198,7 @@ cout << "Search complete. \n";
 
 }
 
-//search_age() finds all goats that have a user specified name and displays their data if found.
+//search_age() finds all goats that have a user specified age and displays their data if found.
 //requires: a list of Goats
 //returns: nothing
 void search_age(list<Goat> trip){
@@ -224,6 +229,30 @@ while(!valid){
 //Searching through the list and displaying any matches:
 for_each(trip.begin(), trip.end(), [age](Goat g){
     if(g.get_age() == age){
+        cout << g.get_name() << " (" << g.get_age() << ", " << g.get_color() << ")\n";
+        
+    }
+});
+//Displaying search complete message:
+cout << "Search complete. \n";
+
+}
+
+//search_color() finds all goats that have a user specified color and displays their data if found.
+//requires: a list of Goats
+//returns: nothing
+void search_color(list<Goat> trip){
+string color;
+//Getting the color to search for:
+cout << "Enter the color of the goats to search for: ";
+cin.clear(); //clearing input buffer
+cin.ignore(10000, '\n');
+
+getline(cin, color);
+
+//Searching through the list and displaying any matches:
+for_each(trip.begin(), trip.end(), [color](Goat g){
+    if(g.get_color() == color){
         cout << g.get_name() << " (" << g.get_age() << ", " << g.get_color() << ")\n";
         
     }
