@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iomanip>
 #include <list>
+#include <algorithm>
 #include "Goat.h"
 using namespace std;
 
@@ -64,6 +65,8 @@ int main() {
                 break;
             case 4:
                 cout << "Searching for a goat.\n";
+                search_goat(trip);
+                break;
 
             default:
                 cout << "Invalid selection.\n";
@@ -158,4 +161,24 @@ int select_goat(list<Goat> trp) {
         cin >> input;
     }
     return input;
+}
+
+//search_goat() finds all goats that have a user specified name and displays their data if found.
+//requires: a list of Goats
+//returns: nothing
+void search_goat(list<Goat> trip){
+auto it = trip.begin();
+string nm;
+
+cout << "Enter the name of the goat to search for: ";
+cin.clear();
+cin.ignore(10000, '\n');
+
+getline(cin, nm);
+it = find(trip.begin(), trip.end(), Goat(nm));
+if (it != trip.end()){
+    cout << "Goat found: " << nm << " (" << it->get_age() << ", " << it->get_color() << ")\n";
+
+}
+
 }
