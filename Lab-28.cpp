@@ -372,8 +372,9 @@ while(!valid){
     for (int i = 0; i < years; i++) {
         for_each(trip.begin(), trip.end(), [](Goat& g){
             g.set_age(g.get_age() + 1);
-            if(g.get_age() > MAX_AGE){
-                g.set_name("Dead " + g.get_name());
+
+            if(g.get_age() == 21){
+                g.set_name(g.get_name() + " Died "); //This is to show that the goat died, but you can still tell which one.
             }
         });
     }
