@@ -21,6 +21,7 @@ void search_name(list<Goat> trip);
 void search_age(list<Goat> trip);
 void search_color(list<Goat> trip);
 void average_age(list<Goat> trip);
+void sort_goats(list<Goat> & trip);
 int main_menu();
 
 int main() {
@@ -109,7 +110,7 @@ int main_menu() {
     cout << "[5] Search for goats by age\n";
     cout << "[6] Search for goats by color\n";
     cout << "[7] Calculate average age of goats\n";
-    cout << "[8] \n";
+    cout << "[8] Sort Goats\n";
     cout << "[9] \n";
     cout << "[10] \n";
     cout << "[11] \n";
@@ -282,4 +283,37 @@ void average_age(list<Goat> trip){
     });
 
     cout << "Average age: " << totalAge / trip.size() << endl;
+}
+
+//sort_goats() sorts the list of goats by age. The user gets to choose ascending or descending order.
+//requires: a list of Goats
+//returns: nothing
+void sort_goats(list<Goat>& trip){
+    int choice;
+    bool valid = false;
+    //getting user input for sort order with validation:
+    while(!valid){
+    cout << " (integer: 1 or 2): ";
+    cin >> choice;
+
+    //Input validation:
+    if(cin.fail()){ // If input is not an integer:
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "Invalid input, not an integer. Try again:\n";
+    }
+    else if(age > 20 || age < 0){ //If input is out of range:
+        cout << "Invalid age, out of range. try again:\n";
+    }
+    else{ //If input is valid:
+        cout << "Searching ...\n";
+        valid = true;
+    }
+
+}
+
+    trip.sort([](Goat a, Goat b){
+        return a.get_age() > b.get_age();
+    });
+
 }
