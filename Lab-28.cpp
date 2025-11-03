@@ -86,6 +86,10 @@ int main() {
                 cout << "Calculating average age of goats. \n";
                 average_age(trip);
                 break;
+            case 8:
+                cout << "Sorting goats by age. \n";
+                sort_goats(trip);
+                break;
 
             default:
                 cout << "Invalid selection.\n";
@@ -110,7 +114,7 @@ int main_menu() {
     cout << "[5] Search for goats by age\n";
     cout << "[6] Search for goats by color\n";
     cout << "[7] Calculate average age of goats\n";
-    cout << "[8] Sort Goats\n";
+    cout << "[8] Sort goats by age\n";
     cout << "[9] \n";
     cout << "[10] \n";
     cout << "[11] \n";
@@ -291,9 +295,12 @@ void average_age(list<Goat> trip){
 void sort_goats(list<Goat>& trip){
     int choice;
     bool valid = false;
+
+    cout << "#1: Sort Ascending (Youngest first)\n";
+    cout << "#2: Sort Descending (Oldest first)\n";
     //getting user input for sort order with validation:
     while(!valid){
-    cout << " (integer: 1 or 2): ";
+    cout << "Choose (1 or 2): ";
     cin >> choice;
 
     //Input validation:
@@ -302,18 +309,26 @@ void sort_goats(list<Goat>& trip){
         cin.ignore(10000, '\n');
         cout << "Invalid input, not an integer. Try again:\n";
     }
-    else if(age > 20 || age < 0){ //If input is out of range:
-        cout << "Invalid age, out of range. try again:\n";
+    else if(choice < 1 || choice > 2){ //If input is out of range:
+        cout << "Invalid input, out of range. Try again:\n";
     }
     else{ //If input is valid:
-        cout << "Searching ...\n";
+        cout << "Sorting ...\n";
         valid = true;
     }
 
-}
+    }
+    //Sorting 
+    if(choice == 1){ //Ascending
+        trip.sort([](Goat a, Goat b){
+            return a.get_age() < b.get_age();
+        });
 
-    trip.sort([](Goat a, Goat b){
-        return a.get_age() > b.get_age();
-    });
+    }
+    else{ //Descending
+        trip.sort([](Goat a, Goat b){ 
+            return a.get_age() > b.get_age();
+        });
+    }
 
 }
