@@ -182,16 +182,9 @@ for_each(trip.begin(), trip.end(), [nm](Goat g){
         cout << g.get_name() << " (" << g.get_age() << ", " << g.get_color() << ")\n";
         
     }
-
-    else{
-        cout << " no matches found. \n";
-    }
 });
-
-
-
-
-
+//Displaying search complete message:
+cout << "Search complete. \n";
 
 
 }
